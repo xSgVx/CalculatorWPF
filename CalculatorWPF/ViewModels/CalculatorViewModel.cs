@@ -173,12 +173,17 @@ namespace CalculatorWPF.ViewModels
                     return;
                 }
 
+                if (calcAction == CalcAction.Clear)
+                {
+                    InputNumbersTxtBox = string.Empty;
+                    return;
+                }
+
                 if (calcAction == CalcAction.Remove)
                 {
                     if (InputNumbersTxtBox.Length > 0)
                     {
                         InputNumbersTxtBox = InputNumbersTxtBox.Remove(InputNumbersTxtBox.Length - 1);
-                        //LogTxtBox = LogTxtBox.Remove(LogTxtBox.Length - 1);
                     }
                     return;
                 }
@@ -204,14 +209,22 @@ namespace CalculatorWPF.ViewModels
                     }
                     else
                     {
-                        LogTxtBox += InputNumbersTxtBox + calcAction.GetDescription();
+                        if (calcAction == CalcAction.Power)
+                        {
+                            LogTxtBox = string.IsNullOrEmpty(LogTxtBox) ? "(" + InputNumbersTxtBox + ")^" :
+                                LogTxtBox.Insert(0, "(").Insert(LogTxtBox.Length, ")^");
+                        }
+                        else
+                        {
+                            LogTxtBox += InputNumbersTxtBox + calcAction.GetDescription();
+                        }
+
                         _calculator.Calculate(InputNumbersTxtBox, _lastCalcAction);
                         _lastCalcAction = calcAction;
 
                     }
-                    InputNumbersTxtBox = string.Empty;
-                    //_lastCalcAction = calcAction;
 
+                    InputNumbersTxtBox = string.Empty;
                 }
             }
         }

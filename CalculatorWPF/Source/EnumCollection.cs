@@ -12,6 +12,7 @@ namespace CalculatorWPF.Source
         Answer = 0,
         Remove,
         Reset,
+        Clear,
         [Description("/")] Divide,
         [Description("*")] Multi,
         [Description("+")] Sum,

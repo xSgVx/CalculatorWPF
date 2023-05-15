@@ -106,33 +106,37 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Column="0" Grid.Row="0" Margin="5, 5"  FontSize="20" Content="←"                        
-                        cal:Message.Attach="[Event Click] = [Action ActionPressed('REMOVE')]" ></Button>
-                
-                <Button Grid.Column="1" Grid.Row="0" Margin="5, 5"  FontSize="20" Content="C"                        
+                <Button Grid.Column="0" Grid.Row="0" Margin="5, 5" Grid.ColumnSpan="2" FontSize="20" Content="reset"
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('RESET')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="1" Margin="5, 10" FontSize="20" Content="/"
+                <Button Grid.Column="0" Grid.Row="1" Margin="5, 5"  FontSize="20" Content="←"                        
+                        cal:Message.Attach="[Event Click] = [Action ActionPressed('REMOVE')]" ></Button>
+                
+                <Button Grid.Column="1" Grid.Row="1" Margin="5, 5"  FontSize="20" Content="C"                        
+                        cal:Message.Attach="[Event Click] = [Action ActionPressed('CLEAR')]" ></Button>
+
+                <Button Grid.Column="0" Grid.Row="2" Margin="5, 10" FontSize="20" Content="/"
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('DIVIDE')]" ></Button>
                 
-                <Button Grid.Column="1" Grid.Row="1" Margin="5, 10" FontSize="20" Content="*" 
+                <Button Grid.Column="1" Grid.Row="2" Margin="5, 10" FontSize="20" Content="*" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('MULTI')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="2" Margin="5, 10" FontSize="20" Content="+" 
+                <Button Grid.Column="0" Grid.Row="3" Margin="5, 10" FontSize="20" Content="+" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('SUM')]" ></Button>
                 
-                <Button Grid.Column="1" Grid.Row="2" Margin="5, 10" FontSize="20" Content="-" 
+                <Button Grid.Column="1" Grid.Row="3" Margin="5, 10" FontSize="20" Content="-" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('MINUS')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="3" Margin="5, 10" FontSize="20" Content="√" 
+                <Button Grid.Column="0" Grid.Row="4" Margin="5, 10" FontSize="20" Content="√" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('ROOT')]" ></Button>
 
-                <Button Grid.Column="1" Grid.Row="3" Margin="5, 10" FontSize="20" Content="^" 
+                <Button Grid.Column="1" Grid.Row="4" Margin="5, 10" FontSize="20" Content="^" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('POWER')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="4" Margin="5, 5" Grid.ColumnSpan="2" FontSize="30" Content="="
+                <Button Grid.Column="0" Grid.Row="5" Margin="5, 5" Grid.ColumnSpan="2" FontSize="30" Content="="
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('ANSWER')]" ></Button>
                 
             </Grid>
