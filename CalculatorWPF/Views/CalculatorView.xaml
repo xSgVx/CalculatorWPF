@@ -3,148 +3,178 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Custom="clr-namespace:WpfPetApp.Utilities"
         xmlns:local="clr-namespace:CalculatorWPF.Views"
         mc:Ignorable="d"
         xmlns:cal="http://www.caliburnproject.org"
         cal:Message.Attach="[Event KeyDown] = [Action KeyPressed($eventArgs)]"
-        Title="Calculator" MinHeight="400" MaxHeight="400" MinWidth="300" MaxWidth="300" 
-        >
-        
-    <Grid ShowGridLines="True">
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
-        </Grid.RowDefinitions>
+        Title="Calculator" 
+        Height="400" Width="300"
+        WindowStyle="ToolWindow" 
+        Background="Transparent"
+        ResizeMode="NoResize">
+    <Border Background="#D8E4F6"
+            CornerRadius="5">
+        <Grid>
 
-        <!-- Вывод цифр -->
-        <Grid x:Name="OutputGrid" Grid.Row="0" ShowGridLines="True">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="InputNumbersTxtBox" Grid.Row="0" Margin="0,5,0,0" Padding="5" 
-                     HorizontalAlignment="Stretch" TextAlignment="Left" FontSize="28" 
-                     cal:Message.Attach="[Event TextChanged] = [Action TextMove($source)]"
-                     IsReadOnly="True" ></TextBox>
-
-            <TextBox x:Name="LogTxtBox" Grid.Row="1" Padding="2"
-                     HorizontalAlignment="Stretch" TextAlignment="Left" FontSize="10"
-                     cal:Message.Attach="[Event TextChanged] = [Action TextMove($source)]"
-                     VerticalAlignment="Center" IsReadOnly="True" ></TextBox>
-        </Grid>
-
-        <!-- Меню выбора режима  -->
-        <!-- *** пока только простые функции *** -->
-        <!-- *** позже добавить инженерные *** -->
-
-        <!-- Окно выбранного режима  -->
-        <Grid x:Name="InputPanelsGrid" Grid.Row="2" ShowGridLines="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <Grid x:Name="NumbersGrid" Grid.Column="0" ShowGridLines="True">
+            <!-- Вывод цифр -->
+            <Grid x:Name="OutputGrid" Grid.Row="0" ShowGridLines="False">
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
+
+                <TextBox Style="{StaticResource TxtBoxStyle}"
+                    x:Name="InputNumbersTxtBox" Grid.Row="0" Margin="0,5,0,0" Padding="5" 
+                    FontSize="28" Background="#CCE3DE"
+                    cal:Message.Attach="[Event TextChanged] = [Action TextMove($source)]" ></TextBox>
+
+                <TextBox Style="{StaticResource TxtBoxStyle}"
+                    x:Name="LogTxtBox" Grid.Row="1" Padding="2" 
+                    FontSize="10" Background="#EAF4F4"
+                    cal:Message.Attach="[Event TextChanged] = [Action TextMove($source)]" ></TextBox>
+            </Grid>
+
+            <!-- Меню выбора режима  -->
+            <!-- *** пока только простые функции *** -->
+            <!-- *** позже добавить инженерные *** -->
+
+            <!-- Окно выбранного режима  -->
+            <Grid x:Name="InputPanelsGrid" Grid.Row="2" ShowGridLines="False">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
-                <!-- Кнопки-Цифры  -->
-                <Button Grid.Column="0" Grid.Row="0" Margin="10, 10" FontSize="40" Content="7"
-                        cal:Message.Attach="[Event Click] = [Action NumberPressed(7)]" ></Button>
-                
-                <Button Grid.Column="1" Grid.Row="0" Margin="10, 10" FontSize="40" Content="8"
+
+                <Grid x:Name="NumbersGrid" Grid.Column="0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Кнопки-Цифры  -->
+
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="0" Grid.Row="0" Content="7"
+                            ></Button>
+
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="1" Grid.Row="0" Content="8"
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(8)]" ></Button>
-                
-                <Button Grid.Column="2" Grid.Row="0" Margin="10, 10" FontSize="40" Content="9"
+
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="2" Grid.Row="0" Content="9"
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(9)]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="1" Margin="10, 10" FontSize="40" Content="4"
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="0" Grid.Row="1" Content="4"
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(4)]" ></Button>
-                
-                <Button Grid.Column="1" Grid.Row="1" Margin="10, 10" FontSize="40" Content="5"
+
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="1" Grid.Row="1" Content="5"
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(5)]" ></Button>
-                
-                <Button Grid.Column="2" Grid.Row="1" Margin="10, 10" FontSize="40" Content="6"
+
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="2" Grid.Row="1" Content="6"
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(6)]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="2" Margin="10, 10" FontSize="40" Content="1"
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="0" Grid.Row="2" Content="1"
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(1)]" ></Button>
-                
-                <Button Grid.Column="1" Grid.Row="2" Margin="10, 10" FontSize="40" Content="2"
+
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="1" Grid.Row="2" Content="2"
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(2)]" ></Button>
-                
-                <Button Grid.Column="2" Grid.Row="2" Margin="10, 10" FontSize="40" Content="3"
+
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="2" Grid.Row="2" Content="3"
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(3)]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="3" Margin="10, 10" FontSize="40" Content="0" Grid.ColumnSpan="2"
+                    <Button Style="{StaticResource NumBtnStyle}"
+                            Grid.Column="0" Grid.Row="3" Content="0" Grid.ColumnSpan="2"                            
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(0)]" ></Button>
-                
-                <Button Grid.Column="2" Grid.Row="3" Margin="10, 10" FontSize="40" Content=","
+
+                    <Button Style="{StaticResource NumBtnStyle}" 
+                            Grid.Column="2" Grid.Row="3" Content=","
                         cal:Message.Attach="[Event Click] = [Action NumberPressed(',')]" ></Button>
-            </Grid>
+                </Grid>
 
-            <Grid x:Name="ActionsGrid" Grid.Column="1" ShowGridLines="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
+                <Grid x:Name="ActionsGrid" Grid.Column="1" ShowGridLines="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                <Button Grid.Column="0" Grid.Row="0" Margin="5, 5" Grid.ColumnSpan="2" FontSize="20" Content="reset"
+                    <Button Style="{StaticResource ComBtnStyle}" 
+                            Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="reset"
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('RESET')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="1" Margin="5, 5"  FontSize="20" Content="←"                        
-                        cal:Message.Attach="[Event Click] = [Action ActionPressed('REMOVE')]" ></Button>
-                
-                <Button Grid.Column="1" Grid.Row="1" Margin="5, 5"  FontSize="20" Content="C"                        
+                    <Button Style="{StaticResource ComBtnStyle}" 
+                            Grid.Column="0" Grid.Row="1" Content="←"                        
+                        cal:Message.Attach="[Event Click] = [Action ActionPressed('REMOVE')]"></Button>
+
+                    <Button Style="{StaticResource ComBtnStyle}" 
+                            Grid.Column="1" Grid.Row="1" Content="C"                        
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('CLEAR')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="2" Margin="5, 10" FontSize="20" Content="/"
+                    <Button Style="{StaticResource ComBtnStyle}" 
+                            Grid.Column="0" Grid.Row="2" Content="/"
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('DIVIDE')]" ></Button>
-                
-                <Button Grid.Column="1" Grid.Row="2" Margin="5, 10" FontSize="20" Content="*" 
+
+                    <Button Style="{StaticResource ComBtnStyle}"
+                            Grid.Column="1" Grid.Row="2" Content="*" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('MULTI')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="3" Margin="5, 10" FontSize="20" Content="+" 
+                    <Button Style="{StaticResource ComBtnStyle}"
+                            Grid.Column="0" Grid.Row="3" Content="+" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('SUM')]" ></Button>
-                
-                <Button Grid.Column="1" Grid.Row="3" Margin="5, 10" FontSize="20" Content="-" 
+
+                    <Button Style="{StaticResource ComBtnStyle}"
+                            Grid.Column="1" Grid.Row="3" Content="-" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('MINUS')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="4" Margin="5, 10" FontSize="20" Content="√" 
+                    <Button Style="{StaticResource ComBtnStyle}" 
+                            Grid.Column="0" Grid.Row="4" Content="√" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('ROOT')]" ></Button>
 
-                <Button Grid.Column="1" Grid.Row="4" Margin="5, 10" FontSize="20" Content="^" 
+                    <Button Style="{StaticResource ComBtnStyle}" 
+                            Grid.Column="1" Grid.Row="4" Content="^" 
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('POWER')]" ></Button>
 
-                <Button Grid.Column="0" Grid.Row="5" Margin="5, 5" Grid.ColumnSpan="2" FontSize="30" Content="="
+                    <Button Style="{StaticResource ComBtnStyle}"
+                            Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="="                            
                         cal:Message.Attach="[Event Click] = [Action ActionPressed('ANSWER')]" ></Button>
-                
+
+                </Grid>
+
             </Grid>
+
 
         </Grid>
 
+    </Border>
 
-    </Grid>
 
 
 </Window>

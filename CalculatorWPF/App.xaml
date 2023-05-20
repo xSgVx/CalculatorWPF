@@ -6,9 +6,23 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+
                 <ResourceDictionary>
                     <local:Bootstrapper x:Key="Bootstrapper"></local:Bootstrapper>
                 </ResourceDictionary>
+
+                <ResourceDictionary Source="Styles/BaseButton.xaml">
+                </ResourceDictionary>
+                
+                <ResourceDictionary Source="Styles/CommandButton.xaml">
+                </ResourceDictionary>
+
+                <ResourceDictionary Source="Styles/NumberButton.xaml">
+                </ResourceDictionary>
+
+                <ResourceDictionary Source="Styles/TextBox.xaml">
+                </ResourceDictionary>
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
